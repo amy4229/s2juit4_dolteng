@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE components PUBLIC "-//SEASAR//DTD S2Container 2.3//EN"
+	"http://www.seasar.org/dtd/components23.dtd">
+<components>
+  <component name="sampleServiceMock" class="org.seasar.framework.aop.interceptors.MockInterceptor"/>
+  <component name="sampleService" class="com.sample.service.Sample">
+    <aspect>sampleServiceMock</aspect>
+  </component>
+</components>

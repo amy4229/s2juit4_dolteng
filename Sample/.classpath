@@ -52,5 +52,6 @@
 	<classpathentry kind="lib" path="src/main/webapp/WEB-INF/lib/sa-struts-1.0.4-sp9.jar" sourcepath="src/main/webapp/WEB-INF/lib/sources/sa-struts-1.0.4-sp9-sources.jar"/>
 	<classpathentry kind="lib" path="src/main/webapp/WEB-INF/lib/struts-1.2.9.jar" sourcepath="src/main/webapp/WEB-INF/lib/sources/struts-1.2.9-sources.jar"/>
 	<classpathentry kind="lib" path="lib/mysql-connector-java-5.1.39.jar"/>
+	<classpathentry kind="lib" path="lib/mockito-all-1.9.5.jar"/>
 	<classpathentry kind="output" path="src/main/webapp/WEB-INF/classes"/>
 </classpath>

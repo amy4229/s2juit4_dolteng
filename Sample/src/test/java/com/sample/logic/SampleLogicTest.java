@@ -1,16 +1,25 @@
-package com.sample.service;
+package com.sample.logic;
+
+import static org.mockito.Mockito.*;
 
 import org.junit.Test;
+import org.mockito.InjectMocks;
+import org.mockito.MockitoAnnotations;
+import org.mockito.Spy;
 import org.seasar.extension.unit.S2TestCase;
-import org.seasar.framework.unit.TestContext;
 import org.seasar.framework.unit.annotation.Mock;
 
-public class SampleServiceTest extends S2TestCase{
+import com.sample.service.DeptService;
+import com.sample.service.SampleService;
 
+public class SampleLogicTest extends S2TestCase{
+	@InjectMocks
+	public SampleLogic sampleService;
 
-	public SampleService sampleService;
-	private TestContext ctx;
-    @Override
+	@Spy
+	private DeptService deptservice;
+
+	@Override
     protected void setUp() throws Exception {
         super.setUp();
         include("app.dicon");
@@ -26,23 +35,32 @@ public class SampleServiceTest extends S2TestCase{
     }
 
     @Test
-    @Mock(target = DeptService.class,returnValue = "0")
-    public void test1_1() throws Exception{
-    	int id = 0;
-		sampleService.findDept(id);
-		fail();
-    }
-
-    @Test
 	public void test1_1_Msg_confirm() {
     	  int id = 10;
     	  try {
+    		MockitoAnnotations.initMocks(this);
+    		DeptService deptService= mock(DeptService.class);
+    		when(deptService.getCount()).thenReturn((long) 0);
       	    sampleService.findDept(id);
       	    fail();
       	  } catch (Exception expected) {
       	    assertEquals("マスタテーブル「DEP」にデータが０件です。DB管理者に連絡してください。", expected.getMessage());
       	  }
 	}
+    @Test
+    @Mock(target=SampleService.class,returnValue="null")
+    public void test1_2_Msg_confirm() {
+    	int id = 10;
+    	try {
+    		MockitoAnnotations.initMocks(this);
+    		DeptService deptService= mock(DeptService.class);
+    		when(deptService.getCount()).thenReturn((long) 0);
+    		sampleService.findDept(id);
+    		fail();
+    	} catch (Exception expected) {
+    		assertEquals("マスタテーブル「DEP」にデータが０件です。DB管理者に連絡してください。", expected.getMessage());
+    	}
+    }
 
 	/*	@Test
 		public void test1_2_msg_confirm() {
